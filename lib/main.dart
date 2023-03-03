@@ -12,16 +12,18 @@ class ChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           bodyLarge: TextStyle(color: Colors.greenAccent),
-        )
+          titleMedium: TextStyle(color: Colors.black)  //text field typing text color
+        ),
+        hintColor: Colors.black38,
       ),
       //home: WelcomeScreen(),
       initialRoute: WelcomeScreen.id,
       routes: {
-        WelcomeScreen.id: (context) => WelcomeScreen(),
-        LoginScreen.id: (context) => LoginScreen(),
-        Registeration.id: (context) => Registeration()
+        WelcomeScreen.id: (context) => const WelcomeScreen(),
+        LoginScreen.id: (context) => const LoginScreen(),
+        Registeration.id: (context) => const Registeration()
       },
     );
   }
