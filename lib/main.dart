@@ -1,9 +1,18 @@
+import 'package:chat_app/screens/chat_screen.dart';
 import 'package:chat_app/screens/login_screen.dart';
 import 'package:chat_app/screens/registeration.dart';
 import 'package:chat_app/screens/welcomeScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main () => runApp(ChatApp());
+Future<void> main () async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(ChatApp());
+}
 
 class ChatApp extends StatelessWidget {
   const ChatApp({Key? key}) : super(key: key);
@@ -23,7 +32,8 @@ class ChatApp extends StatelessWidget {
       routes: {
         WelcomeScreen.id: (context) => const WelcomeScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
-        Registeration.id: (context) => const Registeration()
+        Registeration.id: (context) => const Registeration(),
+        ChatScreen.id: (context) => const ChatScreen()
       },
     );
   }

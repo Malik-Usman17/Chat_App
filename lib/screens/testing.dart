@@ -1,10 +1,4 @@
-import 'package:chat_app/constants/appConstants.dart';
-import 'package:chat_app/screens/chat_screen.dart';
-import 'package:chat_app/widgets/rounded_Button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -16,11 +10,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
-  final _auth = FirebaseAuth.instance;
-  late String email;
-  late String password;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +32,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             TextField(
               onChanged: (value) {
-                email = value;
                 //Do something with the user input.
               },
               decoration: kTextFieldDecoration.copyWith(hintText: 'Enter your email address'),
@@ -53,7 +41,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             TextField(
               onChanged: (value) {
-                password = value;
                 //Do something with the user input.
               },
               decoration: kTextFieldDecoration,
@@ -64,17 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
             RoundedButton(
               title: 'Log In',
               colour: Colors.lightBlueAccent,
-              onPressed: ()async{
-                try{
-                  final newUser = await _auth.signInWithEmailAndPassword(email: email, password: password);
-                  if(newUser != null){
-                    Navigator.pushNamed(context, ChatScreen.id);
-                  }
-                }
-                catch(error){
-                  print(error);
-                }
-              },
+              onPressed: (){},
             )
           ],
         ),
@@ -82,3 +59,6 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
+
+
