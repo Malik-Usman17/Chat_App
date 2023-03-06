@@ -71,6 +71,10 @@ class _ChatScreenState extends State<ChatScreen> {
                       decoration: kMessageTextFieldDecoration,
                     ),
                   ),
+                  TextButton(
+                    onPressed: (){},
+                    child: Text('Send'),
+                  )
                   // FlatButton(
                   //   onPressed: () {
                   //     //Implement send functionality.
