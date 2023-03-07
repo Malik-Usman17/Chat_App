@@ -1,6 +1,7 @@
 import 'package:chat_app/constants/appConstants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -14,6 +15,8 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final _auth = FirebaseAuth.instance;
   dynamic loggedInUser;
+  late String messageText;
+  final _firestore = FirebaseFirestore.instance;
 
   void getCurrentUser() async{
     try{
@@ -26,6 +29,21 @@ class _ChatScreenState extends State<ChatScreen> {
     }
     catch(e){
       print(e);
+    }
+  }
+
+  void getMessages() async{
+    final messages = await _firestore.collection('messages').get();
+    for(var msg in messages.docs){
+      print(msg.data());
+    }
+  }
+
+  void messageStream() async {
+    await for(var snapshot in _firestore.collection('messages').snapshots()){
+      for(var msg in snapshot.docs){
+        print("My Data: ${msg.data()}");
+      }
     }
   }
 
@@ -45,8 +63,10 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
               icon: Icon(Icons.close),
               onPressed: () {
-                _auth.signOut();
-                Navigator.pop(context);
+                messageStream();
+                //getMessages();
+                // _auth.signOut();
+                // Navigator.pop(context);
                 //Implement logout functionality
               }),
         ],
@@ -66,13 +86,18 @@ class _ChatScreenState extends State<ChatScreen> {
                   Expanded(
                     child: TextField(
                       onChanged: (value) {
-                        //Do something with the user input.
+                        messageText = value;
                       },
                       decoration: kMessageTextFieldDecoration,
                     ),
                   ),
                   TextButton(
-                    onPressed: (){},
+                    onPressed: (){
+                      _firestore.collection('messages').add({
+                        'text': messageText,
+                        'sender': loggedInUser.email
+                      });
+                    },
                     child: Text('Send'),
                   )
                   // FlatButton(
