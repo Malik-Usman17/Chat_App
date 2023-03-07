@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: ModalProgressHUD(
         inAsyncCall: spinner,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Image.asset('images/logo.png'),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 48.0,
               ),
               TextField(
@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 decoration: kTextFieldDecoration.copyWith(hintText: 'Enter your email address'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8.0,
               ),
               TextField(
@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 decoration: kTextFieldDecoration,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24.0,
               ),
               RoundedButton(
@@ -82,7 +82,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     });
                   }
                   catch(error){
-                    print(error);
+                    print("Login Catch Body: $error");
+                    setState(() {
+                      spinner = false;
+                    });
                   }
                 },
               )

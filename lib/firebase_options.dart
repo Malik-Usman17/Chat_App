@@ -46,10 +46,6 @@ class DefaultFirebaseOptions {
     }
   }
 
-  // await Firebase.initializeApp(
-  // options: DefaultFirebaseOptions.currentPlatform,
-  // );
-
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: apiKeys,
     appId: appId,
@@ -60,16 +56,16 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDJY-7j52JNNJnpj0jbjghMFvnIkx2HYOE',
-    appId: '1:79950976245:android:e9f6c28535c9d0bc7e61bc',
+    apiKey: apiKeyAndroid,
+    appId: appIdAndroid,
     messagingSenderId: '79950976245',
     projectId: 'flash-chat-2f68d',
     storageBucket: 'flash-chat-2f68d.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBHMct3BZPaySQ-m9PkSjTHjGdNgdNX0e0',
-    appId: '1:79950976245:ios:6d961ac72d62cf8c7e61bc',
+    apiKey: apiKeyIOS,
+    appId: appIdIOS,
     messagingSenderId: '79950976245',
     projectId: 'flash-chat-2f68d',
     storageBucket: 'flash-chat-2f68d.appspot.com',
@@ -78,8 +74,8 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBHMct3BZPaySQ-m9PkSjTHjGdNgdNX0e0',
-    appId: '1:79950976245:ios:6d961ac72d62cf8c7e61bc',
+    apiKey: apiKeyMacOS,
+    appId: appIdMacOS,
     messagingSenderId: '79950976245',
     projectId: 'flash-chat-2f68d',
     storageBucket: 'flash-chat-2f68d.appspot.com',

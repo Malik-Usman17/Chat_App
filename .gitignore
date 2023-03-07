@@ -46,3 +46,4 @@ app.*.map.json
 
 #app files to ignore
 /lib/constants/app_keys.dart
+
